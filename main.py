@@ -47,14 +47,14 @@ def listen_and_respond():
         audio_int16 = np.int16(audio * 32767)
         wav.write("audio.wav", FS, audio_int16)
 
-        # reproduzir a gravação imediatamente
+        # reproduce audio
         mixer.init()
         mixer.music.load("audio.wav")
         mixer.music.play()
         while mixer.music.get_busy():
             time.sleep(0.1)
 
-        # reconhecer comandos
+        # recognize commands
         with sr.AudioFile("audio.wav") as source:
             audio_data = r.record(source)
             try:
@@ -172,7 +172,7 @@ def listen_once(duration=DURATION):
     audio_int16 = np.int16(audio * 32767)
     wav.write("audio.wav", FS, audio_int16)
 
-    # reproduzir o áudio capturado
+    # play audio
     mixer.init()
     mixer.music.load("audio.wav")
     mixer.music.play()
